@@ -11,20 +11,11 @@
   {
     "user": "ERIC",
     "cpu": "AMD Ryzen 9 9950X 16-Core Processor            ",
-    "algorithm": "Bubble Sort",
+    "algorithm": "O(1)",
     "datasetSize": 50000,
     "datasetType": "random",
-    "timeMs": 731.6622,
-    "date": "2026-05-07T15:15:16.155Z"
-  },
-  {
-    "user": "ERIC",
-    "cpu": "AMD Ryzen 9 9950X 16-Core Processor            ",
-    "algorithm": "Merge Sort",
-    "datasetSize": 50000,
-    "datasetType": "random",
-    "timeMs": 25.225499999999784,
-    "date": "2026-05-07T15:15:16.181Z"
+    "timeMs": 0.0084,
+    "date": "2026-05-07T15:22:51.990Z"
   },
   {
     "user": "ERIC",
@@ -38,6 +29,15 @@
   {
     "user": "ERIC",
     "cpu": "AMD Ryzen 9 9950X 16-Core Processor            ",
+    "algorithm": "O(1)",
+    "datasetSize": 50000,
+    "datasetType": "random",
+    "timeMs": 0.0092,
+    "date": "2026-05-07T15:40:59.726Z"
+  },
+  {
+    "user": "ERIC",
+    "cpu": "AMD Ryzen 9 9950X 16-Core Processor            ",
     "algorithm": "Bubble Sort",
     "datasetSize": 50000,
     "datasetType": "random",
@@ -47,20 +47,11 @@
   {
     "user": "ERIC",
     "cpu": "AMD Ryzen 9 9950X 16-Core Processor            ",
-    "algorithm": "Merge Sort",
+    "algorithm": "Bubble Sort",
     "datasetSize": 50000,
     "datasetType": "random",
-    "timeMs": 20.28,
-    "date": "2026-05-07T15:22:10.370Z"
-  },
-  {
-    "user": "ERIC",
-    "cpu": "AMD Ryzen 9 9950X 16-Core Processor            ",
-    "algorithm": "O(1)",
-    "datasetSize": 50000,
-    "datasetType": "random",
-    "timeMs": 0.0084,
-    "date": "2026-05-07T15:22:51.990Z"
+    "timeMs": 731.6622,
+    "date": "2026-05-07T15:15:16.155Z"
   },
   {
     "user": "ERIC",
@@ -74,10 +65,46 @@
   {
     "user": "ERIC",
     "cpu": "AMD Ryzen 9 9950X 16-Core Processor            ",
+    "algorithm": "Bubble Sort",
+    "datasetSize": 50000,
+    "datasetType": "random",
+    "timeMs": 738.4183,
+    "date": "2026-05-07T15:41:00.466Z"
+  },
+  {
+    "user": "ERIC",
+    "cpu": "AMD Ryzen 9 9950X 16-Core Processor            ",
+    "algorithm": "Merge Sort",
+    "datasetSize": 50000,
+    "datasetType": "random",
+    "timeMs": 20.28,
+    "date": "2026-05-07T15:22:10.370Z"
+  },
+  {
+    "user": "ERIC",
+    "cpu": "AMD Ryzen 9 9950X 16-Core Processor            ",
+    "algorithm": "Merge Sort",
+    "datasetSize": 50000,
+    "datasetType": "random",
+    "timeMs": 21.408,
+    "date": "2026-05-07T15:41:00.489Z"
+  },
+  {
+    "user": "ERIC",
+    "cpu": "AMD Ryzen 9 9950X 16-Core Processor            ",
     "algorithm": "Merge Sort",
     "datasetSize": 50000,
     "datasetType": "random",
     "timeMs": 22.5995,
     "date": "2026-05-07T15:22:52.748Z"
+  },
+  {
+    "user": "ERIC",
+    "cpu": "AMD Ryzen 9 9950X 16-Core Processor            ",
+    "algorithm": "Merge Sort",
+    "datasetSize": 50000,
+    "datasetType": "random",
+    "timeMs": 25.225499999999784,
+    "date": "2026-05-07T15:15:16.181Z"
   }
 ]

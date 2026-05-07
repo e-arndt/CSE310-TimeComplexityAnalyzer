@@ -4,6 +4,7 @@ import { measureExecutionTime } from "./timer";
 import { getSystemInfo } from "./systemInfo";
 import { saveResult } from "./scoreboard";
 import { BenchmarkResult } from "./types";
+import { getTopResults } from "./scoreboard";
 
 type AlgorithmFunction<T> = (data: number[]) => T;
 
@@ -39,6 +40,28 @@ function runBenchmark<T>(
   };
 
   saveResult(benchmarkResult);
+}
+
+function displayTopResults(
+  algorithmName: string,
+  datasetSize: number,
+  datasetType: DatasetType
+): void {
+  const topResults = getTopResults(algorithmName, datasetSize, datasetType);
+
+  console.log(`=== Top 10 ${algorithmName} Results ===`);
+  console.log(`Dataset: ${datasetSize} ${datasetType} numbers`);
+
+  if (topResults.length === 0) {
+    console.log("No saved results yet.");
+    return;
+  }
+
+  topResults.forEach((result, index) => {
+    console.log(
+      `${index + 1}. ${result.user} - ${result.cpu} - ${result.timeMs} ms`
+    );
+  });
 }
 
 async function main() {
@@ -80,7 +103,7 @@ async function main() {
     size,
     datasetType
   );
-
+  displayTopResults("Bubble Sort", size, datasetType);
   console.log();
 
   runBenchmark(
