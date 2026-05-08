@@ -4,13 +4,13 @@ import { BenchmarkResult } from "./types";
 
 const resultsDir = path.join(process.cwd(), "results");
 const scoreboardPath = path.join(resultsDir, "scoreboard.json");
-const SCOREBOARD_LIMIT = 10;
+const SCOREBOARD_LIMIT = 5;
 
 /**
- * Saves a benchmark result only if it qualifies for the Top 10
+ * Saves a benchmark result only if it qualifies for the Top 5
  * for its algorithm, dataset size, and dataset type.
  */
-export function saveResult(result: BenchmarkResult): void {
+export function saveResult(result: BenchmarkResult): boolean {
   const results = loadResults();
 
   const sameCategory = results.filter((entry) =>
@@ -26,8 +26,8 @@ export function saveResult(result: BenchmarkResult): void {
     result.timeMs < getSlowestTime(sameCategory);
 
   if (!qualifies) {
-    return;
-  }
+    return false;
+}
 
   const updatedCategory = [...sameCategory, result]
     .sort((a, b) => a.timeMs - b.timeMs)
@@ -36,6 +36,7 @@ export function saveResult(result: BenchmarkResult): void {
   const updatedResults = [...otherCategories, ...updatedCategory];
 
   writeResults(updatedResults);
+    return true;
 }
 
 /**
@@ -52,7 +53,7 @@ export function loadResults(): BenchmarkResult[] {
 }
 
 /**
- * Gets the Top 10 benchmark results for a specific category.
+ * Gets the Top 5 benchmark results for a specific category.
  */
 export function getTopResults(
   algorithm: string,

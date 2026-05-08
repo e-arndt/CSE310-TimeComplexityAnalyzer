@@ -13,7 +13,7 @@ export interface SystemInfo {
 export function getSystemInfo(): SystemInfo {
   const username = os.userInfo().username;
 
-  const cpu = os.cpus()[0].model;
+  const cpu = os.cpus()[0].model.trim();
 
   const cores = os.cpus().length;
 

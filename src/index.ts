@@ -3,8 +3,9 @@ import { bubbleSort, constantTime, mergeSort } from "./algorithms";
 import { measureExecutionTime } from "./timer";
 import { getSystemInfo } from "./systemInfo";
 import { saveResult } from "./scoreboard";
-import { BenchmarkResult } from "./types";
 import { getTopResults } from "./scoreboard";
+import { BenchmarkResult } from "./types";
+import { benchmarkPresets } from "./benchmarkPresets";
 
 type AlgorithmFunction<T> = (data: number[]) => T;
 
@@ -21,7 +22,7 @@ function runBenchmark<T>(
     algorithmFunction(data)
   );
 
-  console.log(`${algorithmName} Time: ${timeMs.toFixed(3)} ms`);
+  console.log(`${algorithmName} Time: ${timeMs.toFixed(4)} ms`);
 
   if (Array.isArray(result)) {
     console.log(`${algorithmName} first 5:`, result.slice(0, 5));
@@ -39,7 +40,11 @@ function runBenchmark<T>(
     date: new Date().toISOString(),
   };
 
-  saveResult(benchmarkResult);
+  const savedToScoreboard = saveResult(benchmarkResult);
+
+  if (savedToScoreboard) {
+    console.log("* New Top Benchmark Recorded *");
+  }
 }
 
 function displayTopResults(
@@ -49,7 +54,7 @@ function displayTopResults(
 ): void {
   const topResults = getTopResults(algorithmName, datasetSize, datasetType);
 
-  console.log(`=== Top 10 ${algorithmName} Results ===`);
+  console.log(`=== Top 5 ${algorithmName} Results ===`);
   console.log(`Dataset: ${datasetSize} ${datasetType} numbers`);
 
   if (topResults.length === 0) {
@@ -65,63 +70,49 @@ function displayTopResults(
 }
 
 async function main() {
-  console.log("=== Time Complexity Analyzer ===");
-
-  const size = 50000;
-  const datasetType: DatasetType = "random";
-
-  const data = generateDataset(size, datasetType);
-
   console.clear();
 
   console.log("=== Time Complexity Analyzer ===");
-
-  console.log(`Dataset size: ${size}`);
-  console.log(`Dataset type: ${datasetType}`);
   console.log();
 
   const system = getSystemInfo();
-
-  runBenchmark(
-    "O(1)",
-    constantTime,
-    data,
-    system.username,
-    system.cpu,
-    size,
-    datasetType
-  );
-
-  console.log();
-
-  runBenchmark(
-    "Bubble Sort",
-    bubbleSort,
-    data,
-    system.username,
-    system.cpu,
-    size,
-    datasetType
-  );
-  displayTopResults("Bubble Sort", size, datasetType);
-  console.log();
-
-  runBenchmark(
-    "Merge Sort",
-    mergeSort,
-    data,
-    system.username,
-    system.cpu,
-    size,
-    datasetType
-  );
-
-  console.log();
 
   console.log("=== System Information ===");
   console.log(`User: ${system.username}`);
   console.log(`CPU: ${system.cpu}`);
   console.log();
+
+  const selectedPreset = benchmarkPresets.find(
+    (preset) => preset.algorithmName === "Bubble Sort"
+  );
+
+  if (!selectedPreset) {
+    console.log("Preset not found.");
+    return;
+  }
+
+  console.log(`=== ${selectedPreset.algorithmName} Benchmark ===`);
+  console.log();
+
+  for (const size of selectedPreset.datasetSizes) {
+    const data = generateDataset(size, selectedPreset.datasetType);
+
+    console.log(`Dataset size: ${size}`);
+    console.log(`Dataset type: ${selectedPreset.datasetType}`);
+    console.log();
+
+    runBenchmark(
+      selectedPreset.algorithmName,
+      bubbleSort,
+      data,
+      system.username,
+      system.cpu,
+      size,
+      selectedPreset.datasetType
+    );
+
+    console.log();
+  }
 }
 
 main();
