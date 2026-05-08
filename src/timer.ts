@@ -1,6 +1,6 @@
-/**
- * Measures execution time of a function in milliseconds.
- */
+/*
+* Measures execution time of a function in milliseconds.
+*/
 export function measureExecutionTime<T>(
   fn: () => T
 ): { result: T; timeMs: number } {
@@ -13,6 +13,6 @@ export function measureExecutionTime<T>(
 
   return {
     result,
-    timeMs: end - start,
+    timeMs: end - start, // Simple difference between end and start gives us the elapsed time in milliseconds
   };
 }
