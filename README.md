@@ -1,18 +1,82 @@
 # Overview
 
-As an aspiring software engineer, I'm working to improve my understanding of TypeScript by building a command-line program that demonstrates how different algorithms scale as dataset size increases. This project gives me practice with TypeScript syntax, typed functions, classes, arrays, recursion, asynchronous code, error handling, and terminal-based user interaction.
+As an aspiring software engineer, I wanted to improve my understanding of TypeScript by building a command-line application that demonstrates how different algorithms scale as dataset size increases. This project gave me practical experience working with TypeScript syntax, typed functions, arrays, recursion, modular file organization, asynchronous terminal input, and performance benchmarking.
 
-The software is a Time Complexity Analyzer. It allows a user to select an algorithm and dataset size, then runs the selected algorithm and displays the execution time in the terminal. The program demonstrates several common time complexities, including O(1), O(log n), O(n), O(n log n), and O(n²).
+The software is a Time Complexity Analyzer. It allows users to select an algorithm, dataset size, and dataset type from an interactive command-line menu. The selected benchmark is then executed and the execution time is displayed in the terminal. The program also stores and displays Top 5 benchmark results for each benchmark category.
 
-My purpose for writing this software is to better understand what TypeScript is and how TypeScript can be used to organize code into multiple files while also implementing important programming concepts such as algorithm efficiency, modular design, and clean terminal output.
+The application currently demonstrates several common time complexities including:
+
+- O(1) — Constant Time
+- O(n) — Linear Time
+- O(n log n) — Merge Sort
+- O(n²) — Bubble Sort
+
+The project also supports multiple dataset types, including:
+- Random datasets
+- Reverse-ordered datasets
+
+My purpose for writing this software was to better understand how TypeScript can be used to organize larger projects into multiple files while also applying important software engineering concepts such as algorithm efficiency, modular architecture, reusable functions, clean terminal output, and persistent data storage.
 
 [Software Demo Video](http://youtube.link.goes.here)
 
+# How to Run the Program
+
+## Prerequisites
+
+Before running the project, install the following:
+
+- Node.js
+- npm
+
+## Clone the Repository
+
+```bash
+git clone https://github.com/e-arndt/CSE310-TimeComplexityAnalyzer.git
+```
+
+## Open the Project Folder
+
+```bash
+cd CSE310-TimeComplexityAnalyzer
+```
+
+## Install Project Dependencies
+
+```bash
+npm install
+```
+
+## Start the Application
+
+```bash
+npm start
+```
+
+The application will launch an interactive command-line menu that allows users to:
+- run benchmark tests
+- select dataset sizes
+- select dataset types
+- view Top 5 benchmark results
+
 # Development Environment
 
-This software was developed using Visual Studio Code as the code editor. Git was used for version control, and GitHub was used to publish the public repository. Node.js and npm were used to run the project and manage the TypeScript development environment.
+This software was developed using Visual Studio Code as the primary code editor. Git was used for version control, and GitHub was used to publish the public repository.
 
-The programming language used for this project is TypeScript. The project uses Node.js with ts-node to execute TypeScript directly in the terminal. It also uses standard TypeScript features such as typed function parameters, arrays, classes, recursion, async functions, and try/catch exception handling.
+The project was built using:
+- TypeScript
+- Node.js
+- npm
+- ts-node
+
+The software uses TypeScript features such as:
+- typed function parameters
+- interfaces
+- arrays
+- recursion
+- asynchronous functions
+- modular imports and exports
+- exception handling
+- reusable utility functions
 
 # Useful Websites
 
@@ -24,8 +88,11 @@ The programming language used for this project is TypeScript. The project uses N
 
 # Future Work
 
-- Add more algorithm examples to demonstrate additional time complexities.
-- Improve the command-line menu so users can run multiple tests without restarting the program.
-- Add automated tests for each algorithm and utility function.
-- Improve result formatting so timing comparisons are easier to read.
-- Add input validation for unusual dataset sizes or invalid menu selections.
+- Add additional algorithms such as Binary Search and Quick Sort.
+- Add more dataset types such as nearly-sorted and duplicate-value datasets.
+- Improve the benchmark result formatting and alignment.
+- Add automated testing for algorithms and utility functions.
+- Add charts or graphs to visually compare benchmark performance.
+- Create a web-based user interface instead of using only a terminal interface.
+- Allow exporting benchmark results to a file for later analysis.
+- Improve input validation and error handling for invalid user selections.

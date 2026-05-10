@@ -1,18 +1,13 @@
-import { DatasetType } from "./types";
-
 /*
   BenchmarkPreset describes the structure for a benchmark.
 
   Each preset has:
   - the algorithm name
   - the dataset size to be tested
-  - the dataset type to be generated
-
 */
 export interface BenchmarkPreset {
   algorithmName: string;
   datasetSizes: number[];
-  datasetType: DatasetType;
 }
 
 
@@ -30,17 +25,18 @@ export interface BenchmarkPreset {
 export const benchmarkPresets: BenchmarkPreset[] = [
   {
     algorithmName: "O(1)",
-    datasetSizes: [50000, 100000, 500000],
-    datasetType: "random",
+    datasetSizes: [50000, 500000, 1500000],
+  },
+  {
+    algorithmName: "Linear Search",
+    datasetSizes: [10000, 500000, 1500000],
   },
   {
     algorithmName: "Bubble Sort",
-    datasetSizes: [1000, 10000, 50000],
-    datasetType: "random",
+    datasetSizes: [1000, 10000, 75000],
   },
   {
     algorithmName: "Merge Sort",
-    datasetSizes: [10000, 50000, 100000],
-    datasetType: "random",
+    datasetSizes: [10000, 50000, 150000],
   },
 ];

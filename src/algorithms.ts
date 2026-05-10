@@ -2,6 +2,22 @@ export function constantTime(data: number[]): number {
   return data[0];
 }
 
+
+/**
+ * Linear Search - O(n)
+ */
+export function linearSearch(data: number[]): number {
+  const target = data[data.length - 1];
+
+  for (let i = 0; i < data.length; i++) {
+    if (data[i] === target) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
 /**
  * Bubble Sort - O(n²)
  */

@@ -36,11 +36,12 @@ export async function startMenu(): Promise<void> {
 
     console.log("=== Time Complexity Analyzer ===");
     console.log();
-    console.log("1. Run Bubble Sort Benchmark");
-    console.log("2. Run Merge Sort Benchmark");
-    console.log("3. Run O(1) Benchmark");
-    console.log("4. View Top 5 Results");
-    console.log("5. Exit");
+    console.log("1. Run Linear Search Benchmark");
+    console.log("2. Run Bubble Sort Benchmark");
+    console.log("3. Run Merge Sort Benchmark");
+    console.log("4. Run O(1) Benchmark");
+    console.log("5. View Top 5 Results");
+    console.log("6. Exit");
     console.log();
 
     const choice = await askQuestion("Choose an option: ");
@@ -49,27 +50,30 @@ export async function startMenu(): Promise<void> {
 
     switch (choice.trim()) {
       case "1":
+        await handleRunBenchmark("Linear Search");
+        break;
+      case "2":
         await handleRunBenchmark("Bubble Sort");
         break;
 
-      case "2":
+      case "3":
         await handleRunBenchmark("Merge Sort");
         break;
 
-      case "3":
+      case "4":
         await handleRunBenchmark("O(1)");
         break;
 
-      case "4":
+      case "5":
         await handleViewTopResults();
         break;
 
-      case "5":
+      case "6":
         running = false;
         break;
 
       default:
-        console.log("Invalid option. Please choose 1-5.");
+        console.log("Invalid option. Please choose 1-6.");
         console.log();
         break;
     }
@@ -78,7 +82,7 @@ export async function startMenu(): Promise<void> {
   rl.close();
 }
 
-// Handles the size selection and runs the selected benchmark.
+// Handles size and dataset selection, then runs the selected benchmark.
 async function handleRunBenchmark(algorithmName: string): Promise<void> {
   const sizeOption = await chooseBenchmarkSize();
 
@@ -86,14 +90,20 @@ async function handleRunBenchmark(algorithmName: string): Promise<void> {
     return;
   }
 
+  const datasetType = await chooseDatasetType();
+
+  if (!datasetType) {
+    return;
+  }
+
   clearScreen();
 
-  runPresetBenchmark(algorithmName, sizeOption);
+  runPresetBenchmark(algorithmName, sizeOption, datasetType);
 
   await pause();
 }
 
-// Handles selecting an algorithm and size for viewing Top 5 results.
+// Handles selecting an algorithm, size, and dataset type for Top 5 results.
 async function handleViewTopResults(): Promise<void> {
   clearScreen();
 
@@ -106,6 +116,12 @@ async function handleViewTopResults(): Promise<void> {
   const sizeOption = await chooseBenchmarkSize();
 
   if (!sizeOption) {
+    return;
+  }
+
+  const datasetType = await chooseDatasetType();
+
+  if (!datasetType) {
     return;
   }
 
@@ -126,11 +142,7 @@ async function handleViewTopResults(): Promise<void> {
 
   clearScreen();
 
-  displayTopResults(
-    algorithmName,
-    selectedSize,
-    selectedPreset.datasetType
-  );
+  displayTopResults(algorithmName, selectedSize, datasetType);
 
   await pause();
 }
@@ -140,25 +152,29 @@ async function chooseAlgorithm(): Promise<string | null> {
   clearScreen();
 
   console.log("Choose algorithm:");
-  console.log("1. Bubble Sort");
-  console.log("2. Merge Sort");
-  console.log("3. O(1)");
-  console.log("4. Back");
+  console.log("1. Linear Search");
+  console.log("2. Bubble Sort");
+  console.log("3. Merge Sort");
+  console.log("4. O(1)");
+  console.log("5. Back");
   console.log();
 
   const choice = await askQuestion("Choose an option: ");
 
   switch (choice.trim()) {
     case "1":
-      return "Bubble Sort";
+      return "Linear Search";
 
     case "2":
-      return "Merge Sort";
+      return "Bubble Sort";
 
     case "3":
-      return "O(1)";
+      return "Merge Sort";
 
     case "4":
+      return "O(1)";
+
+    case "5":
       console.log();
       return null;
 
@@ -193,6 +209,36 @@ async function chooseBenchmarkSize(): Promise<BenchmarkSizeOption | null> {
       return "large";
 
     case "4":
+      console.log();
+      return null;
+
+    default:
+      console.log("Invalid option.");
+      console.log();
+      return null;
+  }
+}
+
+// Lets the user choose a dataset type.
+async function chooseDatasetType(): Promise<DatasetType | null> {
+  clearScreen();
+
+  console.log("Choose dataset type:");
+  console.log("1. Random");
+  console.log("2. Reverse");
+  console.log("3. Back");
+  console.log();
+
+  const choice = await askQuestion("Choose an option: ");
+
+  switch (choice.trim()) {
+    case "1":
+      return "random";
+
+    case "2":
+      return "reverse";
+
+    case "3":
       console.log();
       return null;
 

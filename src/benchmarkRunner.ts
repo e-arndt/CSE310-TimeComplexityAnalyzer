@@ -1,9 +1,14 @@
-import { generateDataset, DatasetType } from "./dataGenerator";
-import { bubbleSort, constantTime, mergeSort } from "./algorithms";
+import { generateDataset } from "./dataGenerator";
+import {
+  bubbleSort,
+  constantTime,
+  linearSearch,
+  mergeSort,
+} from "./algorithms";
 import { measureExecutionTime } from "./timer";
 import { getSystemInfo } from "./systemInfo";
 import { saveResult } from "./scoreboard";
-import { BenchmarkResult } from "./types";
+import { BenchmarkResult, DatasetType } from "./types";
 import { benchmarkPresets } from "./benchmarkPresets";
 
 // Defines a generic algorithm function type.
@@ -54,8 +59,10 @@ export function runBenchmark(
 // Runs one selected preset benchmark size for a selected algorithm.
 export function runPresetBenchmark(
   algorithmName: string,
-  sizeOption: BenchmarkSizeOption
+  sizeOption: BenchmarkSizeOption,
+  datasetType: DatasetType
 ): void {
+
   const system = getSystemInfo();
 
   const selectedPreset = benchmarkPresets.find(
@@ -69,10 +76,12 @@ export function runPresetBenchmark(
 
   const algorithmMap = {
     "O(1)": constantTime,
+    "Linear Search": linearSearch,
     "Bubble Sort": bubbleSort,
-    "Merge Sort": mergeSort,
+    "Merge Sort": mergeSort,  
   };
 
+    
   const sizeIndexMap = {
     small: 0,
     medium: 1,
@@ -90,13 +99,13 @@ export function runPresetBenchmark(
     return;
   }
 
-  const data = generateDataset(selectedSize, selectedPreset.datasetType);
+  const data = generateDataset(selectedSize, datasetType);
 
   console.log(`=== ${selectedPreset.algorithmName} Benchmark ===`);
   console.log();
 
   console.log(`Dataset size: ${selectedSize}`);
-  console.log(`Dataset type: ${selectedPreset.datasetType}`);
+  console.log(`Dataset type: ${datasetType}`);
   console.log();
 
   runBenchmark(
@@ -106,7 +115,7 @@ export function runPresetBenchmark(
     system.username,
     system.cpu,
     selectedSize,
-    selectedPreset.datasetType
+    datasetType
   );
 
   console.log();
