@@ -1,9 +1,4 @@
-export type DatasetType =
-  | "random"
-  | "sorted"
-  | "reverse"
-  | "nearly-sorted"
-  | "duplicates";
+import { DatasetType } from "./types";
 
 /**
  * Generates a numeric dataset for algorithm testing.
