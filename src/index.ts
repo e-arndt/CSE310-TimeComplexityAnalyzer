@@ -22,8 +22,8 @@ async function main() {
   console.log(`CPU: ${system.cpu}`);
   console.log();
 
-  // Temporarily runs Bubble Sort benchmarks until the menu system is added.
-  runPresetBenchmark("Bubble Sort");
+  // Temporarily runs a small Bubble Sort benchmark until the menu system is added.
+runPresetBenchmark("Bubble Sort", "small");
 }
 
 // Starts the application.
