@@ -16,3 +16,6 @@ Thumbs.db
 
 # VS Code (optional)
 .vscode/
+
+# Local benchmark results
+results/scoreboard.json
