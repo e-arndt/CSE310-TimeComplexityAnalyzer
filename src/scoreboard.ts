@@ -6,10 +6,7 @@ const resultsDir = path.join(process.cwd(), "results");
 const scoreboardPath = path.join(resultsDir, "scoreboard.json");
 const SCOREBOARD_LIMIT = 5;
 
-/**
- * Saves a benchmark result only if it qualifies for the Top 5
- * for its algorithm, dataset size, and dataset type.
- */
+// Saves a benchmark result if it qualifies for the Top 5 scoreboard.
 export function saveResult(result: BenchmarkResult): boolean {
   const results = loadResults();
 
@@ -27,7 +24,7 @@ export function saveResult(result: BenchmarkResult): boolean {
 
   if (!qualifies) {
     return false;
-}
+  }
 
   const updatedCategory = [...sameCategory, result]
     .sort((a, b) => a.timeMs - b.timeMs)
@@ -36,12 +33,11 @@ export function saveResult(result: BenchmarkResult): boolean {
   const updatedResults = [...otherCategories, ...updatedCategory];
 
   writeResults(updatedResults);
-    return true;
+
+  return true;
 }
 
-/**
- * Loads all saved benchmark results.
- */
+// Loads all saved benchmark results from the scoreboard file.
 export function loadResults(): BenchmarkResult[] {
   if (!fs.existsSync(scoreboardPath)) {
     return [];
@@ -52,9 +48,7 @@ export function loadResults(): BenchmarkResult[] {
   return JSON.parse(fileContents) as BenchmarkResult[];
 }
 
-/**
- * Gets the Top 5 benchmark results for a specific category.
- */
+// Returns the top benchmark results for a specific algorithm and dataset category.
 export function getTopResults(
   algorithm: string,
   datasetSize: number,
@@ -72,6 +66,7 @@ export function getTopResults(
     .slice(0, limit);
 }
 
+// Checks whether two benchmark results belong to the same category.
 function isSameCategory(
   a: BenchmarkResult,
   b: BenchmarkResult
@@ -83,10 +78,12 @@ function isSameCategory(
   );
 }
 
+// Returns the slowest execution time in a benchmark category.
 function getSlowestTime(results: BenchmarkResult[]): number {
   return Math.max(...results.map((entry) => entry.timeMs));
 }
 
+// Writes benchmark results to the scoreboard JSON file.
 function writeResults(results: BenchmarkResult[]): void {
   if (!fs.existsSync(resultsDir)) {
     fs.mkdirSync(resultsDir);

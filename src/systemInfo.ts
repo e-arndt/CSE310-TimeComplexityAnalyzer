@@ -1,9 +1,7 @@
-// Node module to access system information from the operating system
+// Imports the Node.js operating system module for retrieving system information.
 import * as os from "os";
 
-/*
-*  SystemInfo describes the structure for the system information we want to retrieve.
-*/
+// Defines the structure for collected system information.
 export interface SystemInfo {
   username: string;
   cpu: string;
@@ -11,9 +9,7 @@ export interface SystemInfo {
   platform: string;
 }
 
-/*
-* Retrieves system information such as username, CPU model, number of cores, and platform.
-*/
+// Retrieves the current user's system information.
 export function getSystemInfo(): SystemInfo {
   const username = os.userInfo().username;
 

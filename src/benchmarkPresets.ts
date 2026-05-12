@@ -24,19 +24,19 @@ export interface BenchmarkPreset {
 */
 export const benchmarkPresets: BenchmarkPreset[] = [
   {
-    algorithmName: "O(1)",
+    algorithmName: "O(1)", // Constant Time
     datasetSizes: [50000, 500000, 1500000],
   },
   {
-    algorithmName: "Linear Search",
+    algorithmName: "Linear Search", // O(n)
     datasetSizes: [10000, 500000, 1500000],
   },
   {
-    algorithmName: "Bubble Sort",
+    algorithmName: "Bubble Sort", // O(n²)
     datasetSizes: [1000, 10000, 75000],
   },
   {
-    algorithmName: "Merge Sort",
+    algorithmName: "Merge Sort", // O(n log n)
     datasetSizes: [10000, 50000, 150000],
   },
 ];

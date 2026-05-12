@@ -1,11 +1,10 @@
+// Constant Time - O(1): returns the first item directly, no matter how large the dataset is.
+// This is simulating a constant time operation, like a dictionary lookup or accessing an array index.
 export function constantTime(data: number[]): number {
   return data[0];
 }
 
-
-/**
- * Linear Search - O(n)
- */
+// Linear Search - O(n): checks each item one at a time until it finds the target value.
 export function linearSearch(data: number[]): number {
   const target = data[data.length - 1];
 
@@ -15,12 +14,12 @@ export function linearSearch(data: number[]): number {
     }
   }
 
+  // The search function returns the index of where the target was found, or -1 if it was not found in the dataset.
+  // Another function can then get the contents of that index for further processing as desired.
   return -1;
 }
 
-/**
- * Bubble Sort - O(n²)
- */
+// Bubble Sort - O(n²): repeatedly compares neighboring values and swaps them into order.
 export function bubbleSort(data: number[]): number[] {
   const arr = [...data];
 
@@ -34,12 +33,11 @@ export function bubbleSort(data: number[]): number[] {
     }
   }
 
+  // Return the sorted or arranged COPY of the array, leaving the original array of data unchanged.
   return arr;
 }
 
-/**
- * Merge Sort - O(n log n)
- */
+// Merge Sort - O(n log n): recursively splits the dataset, sorts each half, and merges the sorted halves.
 export function mergeSort(data: number[]): number[] {
   if (data.length <= 1) {
     return data;
@@ -53,6 +51,7 @@ export function mergeSort(data: number[]): number[] {
   return merge(left, right);
 }
 
+// Merge step for Merge Sort: combines two already-sorted arrays into one sorted result.
 function merge(left: number[], right: number[]): number[] {
   const result: number[] = [];
 
@@ -69,6 +68,7 @@ function merge(left: number[], right: number[]): number[] {
     }
   }
 
+  // No nested arrays here, just spread the remaining items from left and right into the result.
   return [
     ...result,
     ...left.slice(leftIndex),

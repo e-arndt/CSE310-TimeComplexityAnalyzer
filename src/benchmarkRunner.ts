@@ -1,3 +1,4 @@
+// Imports dataset generation, algorithms, timing, system info, and scoreboard utilities.
 import { generateDataset } from "./dataGenerator";
 import {
   bubbleSort,
@@ -11,13 +12,13 @@ import { saveResult } from "./scoreboard";
 import { BenchmarkResult, DatasetType } from "./types";
 import { benchmarkPresets } from "./benchmarkPresets";
 
-// Defines a generic algorithm function type.
+// Defines a reusable algorithm function type.
 type AlgorithmFunction = (data: number[]) => unknown;
 
-// Defines selectable benchmark size options.
+// Defines the available benchmark size selections.
 export type BenchmarkSizeOption = "small" | "medium" | "large";
 
-// Runs and records a benchmark for a selected algorithm.
+// Runs a benchmark, measures execution time, and records the result.
 export function runBenchmark(
   algorithmName: string,
   algorithmFunction: AlgorithmFunction,
@@ -56,13 +57,12 @@ export function runBenchmark(
   }
 }
 
-// Runs one selected preset benchmark size for a selected algorithm.
+// Runs a preset benchmark using the selected algorithm, size, and dataset type.
 export function runPresetBenchmark(
   algorithmName: string,
   sizeOption: BenchmarkSizeOption,
   datasetType: DatasetType
 ): void {
-
   const system = getSystemInfo();
 
   const selectedPreset = benchmarkPresets.find(
@@ -78,7 +78,7 @@ export function runPresetBenchmark(
     "O(1)": constantTime,
     "Linear Search": linearSearch,
     "Bubble Sort": bubbleSort,
-    "Merge Sort": mergeSort,  
+    "Merge Sort": mergeSort,
   };
 
     
