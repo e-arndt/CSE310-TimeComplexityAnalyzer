@@ -15,6 +15,26 @@ import { benchmarkPresets } from "./benchmarkPresets";
 // Defines a reusable algorithm function type.
 type AlgorithmFunction = (data: number[]) => unknown;
 
+// Handles formatted terminal output for a completed benchmark run.
+class BenchmarkOutput {
+  constructor(
+    private algorithmName: string,
+    private result: unknown,
+    private timeMs: number
+  ) {}
+
+  // Displays the benchmark execution time and result preview.
+  display(): void {
+    console.log(`${this.algorithmName} Time: ${this.timeMs.toFixed(4)} ms`);
+
+    if (Array.isArray(this.result)) {
+      console.log(`${this.algorithmName} first 5:`, this.result.slice(0, 5));
+    } else {
+      console.log(`${this.algorithmName} Result:`, this.result);
+    }
+  }
+}
+
 // Defines the available benchmark size selections.
 export type BenchmarkSizeOption = "small" | "medium" | "large";
 
@@ -32,13 +52,13 @@ export function runBenchmark(
     algorithmFunction(data)
   );
 
-  console.log(`${algorithmName} Time: ${timeMs.toFixed(4)} ms`);
+  const benchmarkOutput = new BenchmarkOutput(
+    algorithmName,
+    result,
+    timeMs
+  );
 
-  if (Array.isArray(result)) {
-    console.log(`${algorithmName} first 5:`, result.slice(0, 5));
-  } else {
-    console.log(`${algorithmName} Result:`, result);
-  }
+benchmarkOutput.display();
 
   const benchmarkResult: BenchmarkResult = {
     user,
