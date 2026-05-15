@@ -17,7 +17,7 @@ The project also supports multiple dataset types, including:
 
 My purpose for writing this software was to better TypeScript, how it supports JavaScript, how types are a benefit and how it can be used to organize larger projects into multiple files while also applying important software engineering concepts such as algorithm efficiency, modular architecture, reusable functions, clean terminal output, and persistent data storage.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/auoTLA-9hSE)
 
 # How to Run the Program
 
