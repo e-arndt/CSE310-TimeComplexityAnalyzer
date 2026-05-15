@@ -119,24 +119,34 @@ export function runPresetBenchmark(
     return;
   }
 
-  const data = generateDataset(selectedSize, datasetType);
+  try {
+    const data = generateDataset(selectedSize, datasetType);
 
-  console.log(`=== ${selectedPreset.algorithmName} Benchmark ===`);
-  console.log();
+    console.log(`=== ${selectedPreset.algorithmName} Benchmark ===`);
+    console.log();
 
-  console.log(`Dataset size: ${selectedSize}`);
-  console.log(`Dataset type: ${datasetType}`);
-  console.log();
+    console.log(`Dataset size: ${selectedSize}`);
+    console.log(`Dataset type: ${datasetType}`);
+    console.log();
 
-  runBenchmark(
-    selectedPreset.algorithmName,
-    selectedAlgorithm,
-    data,
-    system.username,
-    system.cpu,
-    selectedSize,
-    datasetType
-  );
+    runBenchmark(
+      selectedPreset.algorithmName,
+      selectedAlgorithm,
+      data,
+      system.username,
+      system.cpu,
+      selectedSize,
+      datasetType
+    );
 
-  console.log();
+    console.log();
+  } catch (error) {
+    console.log("Benchmark failed.");
+
+    if (error instanceof Error) {
+      console.log(error.message);
+    }
+
+    console.log();
+  }
 }
