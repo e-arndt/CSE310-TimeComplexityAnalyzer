@@ -58,7 +58,7 @@ export function runBenchmark(
     timeMs
   );
 
-benchmarkOutput.display();
+  benchmarkOutput.display();
 
   const benchmarkResult: BenchmarkResult = {
     user,
