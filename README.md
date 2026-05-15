@@ -15,7 +15,7 @@ The project also supports multiple dataset types, including:
 - Random datasets
 - Reverse-ordered datasets
 
-My purpose for writing this software was to better understand how TypeScript can be used to organize larger projects into multiple files while also applying important software engineering concepts such as algorithm efficiency, modular architecture, reusable functions, clean terminal output, and persistent data storage.
+My purpose for writing this software was to better TypeScript, how it supports JavaScript, how types are a benefit and how it can be used to organize larger projects into multiple files while also applying important software engineering concepts such as algorithm efficiency, modular architecture, reusable functions, clean terminal output, and persistent data storage.
 
 [Software Demo Video](http://youtube.link.goes.here)
 
@@ -94,5 +94,5 @@ The software uses TypeScript features such as:
 - Add automated testing for algorithms and utility functions.
 - Add charts or graphs to visually compare benchmark performance.
 - Create a web-based user interface instead of using only a terminal interface.
-- Allow exporting benchmark results to a file for later analysis.
+- Allow exporting benchmark results to a file for comparison.
 - Improve input validation and error handling for invalid user selections.
